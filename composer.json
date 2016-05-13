@@ -1,0 +1,27 @@
+{
+    "name": "digicol/schemaorg-sdk",
+    "description": "Digital Collections inofficial schema.org PHP SDK",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "keywords": ["schemaorg"],
+    "homepage": "http://ww.digicol.de/",
+    "authors":
+    [
+        {
+            "name": "Digital Collections Verlagsgesellschaft mbH",
+            "email": "dev@gettyimages.com",
+            "role" : "Developer"
+        }
+    ],
+    "require":
+    {
+        "php": ">=5.4.0"
+    },
+    "autoload":
+    {
+        "psr-4" :
+        {
+            "Digicol\\SchemaOrg\\": "src/"
+        }
+    }
+}
