@@ -41,14 +41,46 @@ class TestSearchAction implements SearchActionInterface
 
 
     /**
-     * @param array $result
      * @return int
      */
-    public function execute(&$result)
+    public function execute()
     {
-        $result = [ ];
-        
         return 1;
+    }
+
+
+    /**
+     * Get search results
+     *
+     * @return array Array of objects implementing ThingInterface
+     */
+    public function getResult()
+    {
+        return
+            [
+                new TestThing
+                (
+                    [
+                        'type' => 'Thing',
+                        'properties' =>
+                        [
+                            'name' => 'Thing #1',
+                            'description' => 'Some text about thing #1 here.'
+                        ]
+                    ]
+                ),
+                new TestThing
+                (
+                    [
+                        'type' => 'Thing',
+                        'properties' =>
+                            [
+                                'name' => 'Thing #2',
+                                'description' => 'Some text about thing #2 here.'
+                            ]
+                    ]
+                )
+            ];
     }
 
 }

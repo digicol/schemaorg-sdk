@@ -1,2 +1,2 @@
-# schemaorg-adapter-sdk
+# schemaorg-sdk
 Inofficial PHP SDK for building schema.org adapters

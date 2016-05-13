@@ -28,7 +28,11 @@ class TestAdapter implements AdapterInterface
     {
         $result =
             [
-                'test' => [ ]
+                'test' =>
+                    [
+                        'name' => 'Test',
+                        'description' => 'Static test data'
+                    ]
             ];
 
         return $result;
@@ -40,6 +44,6 @@ class TestAdapter implements AdapterInterface
      */
     public function newSearchAction(array $search_params)
     {
-        // TODO: Implement newSearchAction() method.
+        return new TestSearchAction($search_params);
     }
 }

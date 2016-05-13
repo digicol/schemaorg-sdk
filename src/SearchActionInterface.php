@@ -23,8 +23,15 @@ interface SearchActionInterface
 
 
     /**
-     * @param array $result
      * @return int
      */
-    public function execute(&$result);
+    public function execute();
+
+
+    /**
+     * Get search results
+     *
+     * @return array Array of objects implementing ThingInterface
+     */
+    public function getResult();
 }
