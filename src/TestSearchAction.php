@@ -56,7 +56,7 @@ class TestSearchAction implements SearchActionInterface
      */
     public function getResult()
     {
-        return
+        $result =
             [
                 new TestThing
                 (
@@ -81,6 +81,26 @@ class TestSearchAction implements SearchActionInterface
                     ]
                 )
             ];
+
+        if (! empty($this->input_properties[ 'q' ]))
+        {
+            $result[ ] =
+                [
+                    new TestThing
+                    (
+                        [
+                            'type' => 'Thing',
+                            'properties' =>
+                                [
+                                    'name' => 'Thing with ' . $this->input_properties[ 'q' ],
+                                    'description' => 'This is here to prove your search term did come through.'
+                                ]
+                        ]
+                    )
+                ];
+        }
+
+        return $result;
     }
 
 }

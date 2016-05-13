@@ -15,6 +15,7 @@ interface AdapterInterface
 
     /**
      * @param array $search_params
+     * @return \Digicol\SchemaOrg\SearchActionInterface
      */
     public function newSearchAction(array $search_params);
 }
