@@ -60,10 +60,11 @@ class TestSearchAction implements SearchActionInterface
     public function getResult()
     {
         $result = [ ];
-        $items_per_page = $this->getItemsPerPage();
+        $items_per_page = Utils::getItemsPerPage($this->input_properties, self::DEFAULT_PAGESIZE);
         $cnt = 0;
+        $start_index = Utils::getStartIndex($this->input_properties, self::DEFAULT_PAGESIZE);
 
-        for ($i = $this->getStartIndex(); $i <= self::TOTAL_RESULTS; $i++)
+        for ($i = $start_index; $i <= self::TOTAL_RESULTS; $i++)
         {
             $cnt++;
 
@@ -76,7 +77,7 @@ class TestSearchAction implements SearchActionInterface
                 $name = $this->input_properties['q'] . ' #' . $i;
             }
 
-            $result[] = new TestThing
+            $result[ ] = new TestThing
             (
                 [
                     'type' => 'Thing',
@@ -109,36 +110,8 @@ class TestSearchAction implements SearchActionInterface
         return
         [
             'opensearch:totalResults' => self::TOTAL_RESULTS,
-            'opensearch:startIndex' => $this->getStartIndex(),
-            'opensearch:itemsPerPage' => $this->getItemsPerPage()
+            'opensearch:startIndex' => Utils::getStartIndex($this->input_properties, self::DEFAULT_PAGESIZE),
+            'opensearch:itemsPerPage' => Utils::getItemsPerPage($this->input_properties, self::DEFAULT_PAGESIZE)
         ];
-    }
-
-
-    protected function getItemsPerPage()
-    {
-        if (! isset($this->input_properties[ 'opensearch:count' ]))
-        {
-            return self::DEFAULT_PAGESIZE;
-        }
-
-        return max(1, intval($this->input_properties[ 'opensearch:count' ]));
-    }
-
-
-    protected function getStartPage()
-    {
-        if (! isset($this->input_properties[ 'opensearch:startPage' ]))
-        {
-            return 1;
-        }
-
-        return max(1, intval($this->input_properties[ 'opensearch:startPage' ]));
-    }
-
-
-    protected function getStartIndex()
-    {
-        return (($this->getItemsPerPage() * ($this->getStartPage() - 1)) + 1);
     }
 }
