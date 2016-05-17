@@ -16,6 +16,13 @@ interface SearchActionInterface
 
 
     /**
+     * Set search parameters
+     *
+     * Common values that should be supported:
+     *   query (string)
+     *   opensearch:count (int; items per page)
+     *   opensearch:startPage (int; 1 for the first page)
+     * 
      * @param array $values
      * @return int
      */
@@ -34,4 +41,18 @@ interface SearchActionInterface
      * @return array Array of objects implementing ThingInterface
      */
     public function getResult();
+
+
+    /**
+     * Get search result metadata
+     *
+     * The array should contain at least these three values:
+     *
+     *   opensearch:totalResults (int)
+     *   opensearch:startIndex (int; 1 for the first document)
+     *   opensearch:itemsPerPage (int)
+     *
+     * @return array
+     */
+    public function getResultMeta();
 }

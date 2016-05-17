@@ -5,6 +5,9 @@ namespace Digicol\SchemaOrg;
 
 class TestSearchAction implements SearchActionInterface
 {
+    const DEFAULT_PAGESIZE = 20;
+    const TOTAL_RESULTS = 57;
+
     /** @var array */
     protected $params = [ ];
 
@@ -56,49 +59,86 @@ class TestSearchAction implements SearchActionInterface
      */
     public function getResult()
     {
-        $result =
-            [
-                new TestThing
-                (
-                    [
-                        'type' => 'Thing',
-                        'properties' =>
-                        [
-                            'name' => 'Thing #1',
-                            'description' => 'Some text about thing #1 here.'
-                        ]
-                    ]
-                ),
-                new TestThing
-                (
-                    [
-                        'type' => 'Thing',
-                        'properties' =>
-                            [
-                                'name' => 'Thing #2',
-                                'description' => 'Some text about thing #2 here.'
-                            ]
-                    ]
-                )
-            ];
+        $result = [ ];
+        $items_per_page = $this->getItemsPerPage();
+        $cnt = 0;
 
-        if (! empty($this->input_properties[ 'q' ]))
+        for ($i = $this->getStartIndex(); $i <= self::TOTAL_RESULTS; $i++)
         {
-            $result[ ] =
-                new TestThing
-                (
-                    [
-                        'type' => 'Thing',
-                        'properties' =>
-                            [
-                                'name' => 'Thing with ' . $this->input_properties[ 'q' ],
-                                'description' => 'This is here to prove your search term did come through.'
-                            ]
-                    ]
-                );
+            $cnt++;
+
+            if (empty($this->input_properties['q']))
+            {
+                $name = 'Thing #' . $i;
+            }
+            else
+            {
+                $name = $this->input_properties['q'] . ' #' . $i;
+            }
+
+            $result[] = new TestThing
+            (
+                [
+                    'type' => 'Thing',
+                    'properties' =>
+                        [
+                            'name' => $name,
+                            'description' => 'This is the description of item #' . $i,
+                            'image' => 'http://www.digicol.de/wp-content/uploads/2015/02/Semantic-ipad2-e1424180671222.png'
+                        ]
+                ]
+            );
+
+            if ($cnt >= $items_per_page)
+            {
+                break;
+            }
         }
 
         return $result;
     }
 
+
+    /**
+     * Get search result metadata
+     *
+     * @return array
+     */
+    public function getResultMeta()
+    {
+        return
+        [
+            'opensearch:totalResults' => self::TOTAL_RESULTS,
+            'opensearch:startIndex' => $this->getStartIndex(),
+            'opensearch:itemsPerPage' => $this->getItemsPerPage()
+        ];
+    }
+
+
+    protected function getItemsPerPage()
+    {
+        if (! isset($this->input_properties[ 'opensearch:count' ]))
+        {
+            return self::DEFAULT_PAGESIZE;
+        }
+
+        return max(1, intval($this->input_properties[ 'opensearch:count' ]));
+    }
+
+
+    protected function getStartPage()
+    {
+        if (! isset($this->input_properties[ 'opensearch:startPage' ]))
+        {
+            return 1;
+        }
+
+        return max(1, intval($this->input_properties[ 'opensearch:startPage' ]));
+    }
+
+
+    protected function getStartIndex()
+    {
+        return (($this->getItemsPerPage() * ($this->getStartPage() - 1)) + 1);
+    }
 }
