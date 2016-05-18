@@ -6,7 +6,7 @@ namespace Digicol\SchemaOrg;
 class TestThing implements ThingInterface
 {
     protected $type = 'Thing';
-    protected $properties = [ ];
+    protected $params = [ ];
 
 
     /**
@@ -17,7 +17,7 @@ class TestThing implements ThingInterface
     public function __construct(array $params)
     {
         $this->type = $params[ 'type' ];
-        $this->properties = $params[ 'properties' ];
+        $this->params = $params;
     }
 
 
@@ -37,7 +37,24 @@ class TestThing implements ThingInterface
      */
     public function getProperties()
     {
-        return $this->properties;
+        $i = basename(parse_url($this->params[ 'sameAs' ], PHP_URL_PATH));
+
+        if (empty($this->params['q']))
+        {
+            $name = 'Thing #' . $i;
+        }
+        else
+        {
+            $name = $this->params['q'] . ' #' . $i;
+        }
+
+        return
+            [
+                'name' => $name,
+                'description' => 'This is the description of item #' . $i,
+                'sameAs' => $this->params[ 'sameAs' ],
+                'image' => 'http://www.digicol.de/wp-content/uploads/2015/02/Semantic-ipad2-e1424180671222.png'
+            ];
     }
 
 }

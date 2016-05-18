@@ -68,25 +68,12 @@ class TestSearchAction implements SearchActionInterface
         {
             $cnt++;
 
-            if (empty($this->input_properties['q']))
-            {
-                $name = 'Thing #' . $i;
-            }
-            else
-            {
-                $name = $this->input_properties['q'] . ' #' . $i;
-            }
-
             $result[ ] = new TestThing
             (
                 [
                     'type' => 'Thing',
-                    'properties' =>
-                        [
-                            'name' => $name,
-                            'description' => 'This is the description of item #' . $i,
-                            'image' => 'http://www.digicol.de/wp-content/uploads/2015/02/Semantic-ipad2-e1424180671222.png'
-                        ]
+                    'sameAs' => 'http://example.com/thing/' . $i,
+                    'q' => (isset($this->input_properties['q']) ? $this->input_properties['q'] : false)
                 ]
             );
 

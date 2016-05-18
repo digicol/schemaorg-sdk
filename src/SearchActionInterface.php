@@ -5,12 +5,6 @@ namespace Digicol\SchemaOrg;
 
 interface SearchActionInterface
 {
-    /**
-     * @param array $params
-     */
-    public function __construct(array $params);
-
-
     /** @return array */
     public function describeInputProperties();
 

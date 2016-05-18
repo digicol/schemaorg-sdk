@@ -41,4 +41,20 @@ class TestAdapter implements AdapterInterface
     {
         return new TestSearchAction($search_params);
     }
+
+
+    /**
+     * @param string $uri sameAs identifying URL
+     * @return \Digicol\SchemaOrg\ThingInterface
+     */
+    public function newThing($uri)
+    {
+        return new TestThing
+        (
+            [
+                'type' => 'Thing',
+                'sameAs' => $uri
+            ]
+        );
+    }
 }
