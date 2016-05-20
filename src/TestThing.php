@@ -50,10 +50,10 @@ class TestThing implements ThingInterface
 
         return
             [
-                'name' => $name,
-                'description' => 'This is the description of item #' . $i,
-                'sameAs' => $this->params[ 'sameAs' ],
-                'image' => 'http://www.digicol.de/wp-content/uploads/2015/02/Semantic-ipad2-e1424180671222.png'
+                'name' => [ [ '@value' => $name ] ],
+                'description' => [ [ '@value' => 'This is the description of item #' . $i ] ],
+                'sameAs' => [ [ '@id' => $this->params[ 'sameAs' ] ] ],
+                'image' => [ [ '@id' => 'http://www.digicol.de/wp-content/uploads/2015/02/Semantic-ipad2-e1424180671222.png' ] ]
             ];
     }
 
