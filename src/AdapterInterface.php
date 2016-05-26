@@ -12,6 +12,10 @@ interface AdapterInterface
 
 
     /** @return array */
+    public function getParams();
+
+
+    /** @return array */
     public function describeSearchActions();
 
 

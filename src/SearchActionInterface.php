@@ -6,6 +6,10 @@ namespace Digicol\SchemaOrg;
 interface SearchActionInterface
 {
     /** @return array */
+    public function getParams();
+
+
+    /** @return array */
     public function describeInputProperties();
 
 

@@ -18,6 +18,13 @@ class TestAdapter implements AdapterInterface
 
 
     /** @return array */
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+
+    /** @return array */
     public function describeSearchActions()
     {
         $result =
