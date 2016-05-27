@@ -22,6 +22,19 @@ class TestThing implements ThingInterface
 
 
     /**
+     * Get identifier URI
+     *
+     * @return string
+     */
+    public function getSameAs()
+    {
+        $properties = $this->getProperties();
+        
+        return $properties[ 'sameAs' ][ '@id' ];
+    }
+
+
+    /**
      * Get item type
      *
      * @return string schema.org type like "ImageObject" or "Thing"
