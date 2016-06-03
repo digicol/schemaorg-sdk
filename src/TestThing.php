@@ -46,6 +46,8 @@ class TestThing implements ThingInterface
 
 
     /**
+     * Get all property values
+     *
      * @return array
      */
     public function getProperties()
@@ -63,6 +65,8 @@ class TestThing implements ThingInterface
 
         return
             [
+                '@context' => 'http://schema.org/',
+                '@type' => $this->getType(),
                 'name' => [ [ '@value' => $name ] ],
                 'description' => [ [ '@value' => 'This is the description of item #' . $i ] ],
                 'sameAs' => [ [ '@id' => $this->params[ 'sameAs' ] ] ],

@@ -3,7 +3,7 @@
 namespace Digicol\SchemaOrg;
 
 
-interface SearchActionInterface
+interface SearchActionInterface extends ThingInterface
 {
     /** @return array */
     public function getParams();
@@ -31,26 +31,4 @@ interface SearchActionInterface
      * @return int
      */
     public function execute();
-
-
-    /**
-     * Get search results
-     *
-     * @return array Array of objects implementing ThingInterface
-     */
-    public function getResult();
-
-
-    /**
-     * Get search result metadata
-     *
-     * The array should contain at least these three values:
-     *
-     *   opensearch:totalResults (int)
-     *   opensearch:startIndex (int; 1 for the first document)
-     *   opensearch:itemsPerPage (int)
-     *
-     * @return array
-     */
-    public function getResultMeta();
 }

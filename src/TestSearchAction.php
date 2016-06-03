@@ -3,7 +3,7 @@
 namespace Digicol\SchemaOrg;
 
 
-class TestSearchAction implements SearchActionInterface
+class TestSearchAction extends TestThing implements SearchActionInterface
 {
     const DEFAULT_PAGESIZE = 20;
     const TOTAL_RESULTS = 57;
@@ -21,6 +21,17 @@ class TestSearchAction implements SearchActionInterface
     public function __construct(array $params)
     {
         $this->params = $params;
+    }
+
+
+    /**
+     * Get item type
+     *
+     * @return string schema.org type like "ImageObject" or "Thing"
+     */
+    public function getType()
+    {
+        return 'SearchAction';
     }
 
 
@@ -60,29 +71,41 @@ class TestSearchAction implements SearchActionInterface
 
 
     /**
-     * Get search results
+     * Get all property values
      *
-     * @return array Array of objects implementing ThingInterface
+     * @return array
      */
-    public function getResult()
+    public function getProperties()
     {
-        $result = [ ];
+        $result = Utils::getSearchActionSkeleton();
+        
         $items_per_page = Utils::getItemsPerPage($this->input_properties, self::DEFAULT_PAGESIZE);
-        $cnt = 0;
         $start_index = Utils::getStartIndex($this->input_properties, self::DEFAULT_PAGESIZE);
+
+        $result[ 'query' ] = (isset($this->input_properties['q']) ? $this->input_properties['q'] : '');
+        $result[ 'result' ][ 'numberOfItems' ] = self::TOTAL_RESULTS;
+        $result[ 'result' ][ 'opensearch:itemsPerPage' ] = $items_per_page;
+        $result[ 'result' ][ 'opensearch:startIndex' ] = $start_index;
+
+        $cnt = 0;
 
         for ($i = $start_index; $i <= self::TOTAL_RESULTS; $i++)
         {
             $cnt++;
 
-            $result[ ] = new TestThing
-            (
+            $result[ 'result' ][ 'itemListElement' ][ ] = 
                 [
-                    'type' => 'Thing',
-                    'sameAs' => 'http://example.com/thing/' . $i,
-                    'q' => (isset($this->input_properties['q']) ? $this->input_properties['q'] : false)
-                ]
-            );
+                    '@type' => 'ListItem',
+                    'position' => $i,
+                    'item' => new TestThing
+                    (
+                        [
+                            'type' => 'Thing',
+                            'sameAs' => 'http://example.com/thing/' . $i,
+                            'q' => (isset($this->input_properties['q']) ? $this->input_properties['q'] : false)
+                        ]
+                    )
+                ];
 
             if ($cnt >= $items_per_page)
             {

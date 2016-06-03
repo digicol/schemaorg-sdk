@@ -68,6 +68,33 @@ class Utils
         return $result;
     }
 
+
+    /**
+     * @return array Empty search result template
+     */
+    public static function getSearchActionSkeleton()
+    {
+        return
+            [
+                '@context' =>
+                    [
+                        '@vocab' => 'http://schema.org/',
+                        'opensearch' => 'http://a9.com/-/spec/opensearch/1.1/'
+                    ],
+                '@type' => 'SearchAction',
+                'actionStatus' => 'CompletedActionStatus',
+                'query' => '',
+                'result' =>
+                    [
+                        '@type' => 'ItemList',
+                        'numberOfItems' => 0,
+                        'opensearch:startIndex' => 1,
+                        'opensearch:itemsPerPage' => 1,
+                        'itemListElement' => [ ]
+                    ]
+            ];
+    }
+    
     
     /**
      * @param array $input_properties
