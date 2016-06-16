@@ -54,13 +54,13 @@ class TestThing implements ThingInterface
     {
         $i = basename(parse_url($this->params[ 'sameAs' ], PHP_URL_PATH));
 
-        if (empty($this->params['q']))
+        if (empty($this->params['query']))
         {
             $name = 'Thing #' . $i;
         }
         else
         {
-            $name = $this->params['q'] . ' #' . $i;
+            $name = $this->params['query'] . ' #' . $i;
         }
 
         return

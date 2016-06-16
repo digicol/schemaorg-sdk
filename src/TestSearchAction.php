@@ -82,7 +82,7 @@ class TestSearchAction extends TestThing implements SearchActionInterface
         $items_per_page = Utils::getItemsPerPage($this->input_properties, self::DEFAULT_PAGESIZE);
         $start_index = Utils::getStartIndex($this->input_properties, self::DEFAULT_PAGESIZE);
 
-        $result[ 'query' ] = (isset($this->input_properties['q']) ? $this->input_properties['q'] : '');
+        $result[ 'query' ] = (isset($this->input_properties['query']) ? $this->input_properties['query'] : '');
         $result[ 'result' ][ 'numberOfItems' ] = self::TOTAL_RESULTS;
         $result[ 'result' ][ 'opensearch:itemsPerPage' ] = $items_per_page;
         $result[ 'result' ][ 'opensearch:startIndex' ] = $start_index;
@@ -102,7 +102,7 @@ class TestSearchAction extends TestThing implements SearchActionInterface
                         [
                             'type' => 'Thing',
                             'sameAs' => 'http://example.com/thing/' . $i,
-                            'q' => (isset($this->input_properties['q']) ? $this->input_properties['q'] : false)
+                            'query' => (isset($this->input_properties['query']) ? $this->input_properties['query'] : false)
                         ]
                     )
                 ];
