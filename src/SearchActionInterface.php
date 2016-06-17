@@ -28,6 +28,14 @@ interface SearchActionInterface extends ThingInterface
 
 
     /**
+     * Get search parameters
+     * 
+     * @return array
+     */
+    public function getInputProperties();
+
+
+    /**
      * @return int
      */
     public function execute();

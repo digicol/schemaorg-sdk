@@ -62,6 +62,17 @@ class TestSearchAction extends TestThing implements SearchActionInterface
 
 
     /**
+     * Get search parameters
+     *
+     * @return array
+     */
+    public function getInputProperties()
+    {
+        return $this->input_properties;
+    }
+
+
+    /**
      * @return int
      */
     public function execute()
