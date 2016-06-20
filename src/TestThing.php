@@ -74,4 +74,16 @@ class TestThing implements ThingInterface
             ];
     }
 
+    
+    /**
+     * @return array
+     */
+    public function getReconciledProperties()
+    {
+        return Utils::reconcileThingProperties
+        (
+            $this->getType(),
+            $this->getProperties()
+        );
+    }
 }

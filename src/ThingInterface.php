@@ -27,4 +27,12 @@ interface ThingInterface
      * @return array
      */
     public function getProperties();
+
+
+    /**
+     * Get common, normalized properties
+     * 
+     * @return array
+     */
+    public function getReconciledProperties();
 }
