@@ -15,13 +15,24 @@ class Utils
     {
         $result =
             [
-                'thumbnail' => false,
-                'name' => [ [ '@value' => '(No name)' ] ],
+                'dateCreated' => [ [ '@value' => '' ] ],
                 'description' => [ [ '@value' => '' ] ],
-                'text' => [ [ '@value' => '' ] ]
+                'name' => [ [ '@value' => '(No name)' ] ],
+                'text' => [ [ '@value' => '' ] ],
+                'thumbnail' => false
             ];
 
-        // Name
+        // description, dateCreated
+
+        foreach ([ 'dateCreated', 'description' ] as $key)
+        {
+            if (! empty($properties[ $key ][ 0 ][ '@value' ]))
+            {
+                $result[ $key ] = $properties[ $key ];
+            }
+        }
+
+        // name
 
         if (! empty($properties[ 'headline' ][ 0 ][ '@value' ]))
         {
@@ -32,14 +43,7 @@ class Utils
             $result[ 'name' ] = $properties[ 'name' ];
         }
 
-        // Description
-
-        if (! empty($properties[ 'description' ][ 0 ][ '@value' ]))
-        {
-            $result[ 'description' ] = $properties[ 'description' ]; 
-        }
-        
-        // Text
+        // text
         // If "text" is not provided, copy "articleBody" or "caption".
         // Last resort: Copy "description"
 
