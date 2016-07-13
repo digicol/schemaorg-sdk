@@ -17,6 +17,7 @@ class Utils
             [
                 'thumbnail' => false,
                 'name' => [ [ '@value' => '(No name)' ] ],
+                'description' => [ [ '@value' => '' ] ],
                 'text' => [ [ '@value' => '' ] ]
             ];
 
@@ -31,7 +32,16 @@ class Utils
             $result[ 'name' ] = $properties[ 'name' ];
         }
 
+        // Description
+
+        if (! empty($properties[ 'description' ][ 0 ][ '@value' ]))
+        {
+            $result[ 'description' ] = $properties[ 'description' ]; 
+        }
+        
         // Text
+        // If "text" is not provided, copy "articleBody" or "caption".
+        // Last resort: Copy "description"
 
         $text_map =
             [
@@ -41,17 +51,17 @@ class Utils
                 'VideoObject' => 'caption'
             ];
 
-        if (isset($text_map[ $type ]) && (! empty($properties[ $text_map[ $type ] ][ 0 ][ '@value' ])))
+        if (! empty($properties[ 'text' ][ 0 ][ '@value' ]))
+        {
+            $result[ 'text' ] = $properties[ 'text' ];
+        }
+        elseif (isset($text_map[ $type ]) && (! empty($properties[ $text_map[ $type ] ][ 0 ][ '@value' ])))
         {
             $result[ 'text' ] = $properties[ $text_map[ $type ] ];
         }
-        elseif (! empty($properties[ 'description' ][ 0 ][ '@value' ]))
+        elseif (! empty($result[ 'description' ][ 0 ][ '@value' ]))
         {
-            $result[ 'text' ] = $properties[ 'description' ];
-        }
-        elseif (! empty($properties[ 'text' ][ 0 ][ '@value' ]))
-        {
-            $result[ 'text' ] = $properties[ 'text' ];
+            $result[ 'text' ] = $result[ 'description' ];
         }
 
         // Thumbnail image
