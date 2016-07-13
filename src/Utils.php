@@ -15,21 +15,17 @@ class Utils
     {
         $result =
             [
-                'dateCreated' => [ [ '@value' => '' ] ],
                 'description' => [ [ '@value' => '' ] ],
                 'name' => [ [ '@value' => '(No name)' ] ],
                 'text' => [ [ '@value' => '' ] ],
                 'thumbnail' => false
             ];
 
-        // description, dateCreated
+        // description
 
-        foreach ([ 'dateCreated', 'description' ] as $key)
+        if (! empty($properties[ 'description' ][ 0 ][ '@value' ]))
         {
-            if (! empty($properties[ $key ][ 0 ][ '@value' ]))
-            {
-                $result[ $key ] = $properties[ $key ];
-            }
+            $result[ $key ] = $properties[ 'description' ];
         }
 
         // name
