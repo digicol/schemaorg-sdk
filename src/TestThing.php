@@ -76,7 +76,7 @@ class TestThing implements ThingInterface
                             '@type' => 'http://www.w3.org/1999/xhtml'
                         ] 
                     ],
-                'dateCreated' => [ [ '@value' => date('c', (time() - ($i * 10))), '@type' => 'DateTime' ] ],
+                'dateCreated' => [ [ '@value' => date('c', (time() - ($i * 10000))), '@type' => 'DateTime' ] ],
                 'sameAs' => [ [ '@id' => $this->params[ 'sameAs' ] ] ],
                 'image' => [ [ '@id' => 'http://www.digicol.de/wp-content/uploads/2015/02/Semantic-ipad2-e1424180671222.png' ] ]
             ];
