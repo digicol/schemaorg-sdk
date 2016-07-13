@@ -69,6 +69,13 @@ class TestThing implements ThingInterface
                 '@type' => $this->getType(),
                 'name' => [ [ '@value' => $name ] ],
                 'description' => [ [ '@value' => 'This is the description of item #' . $i ] ],
+                'text' => 
+                    [ 
+                        [
+                            '@value' => sprintf('<p>This is the text of <b>item #%s</b>, in XHTML format.', $i), 
+                            '@type' => 'http://www.w3.org/1999/xhtml'
+                        ] 
+                    ],
                 'sameAs' => [ [ '@id' => $this->params[ 'sameAs' ] ] ],
                 'image' => [ [ '@id' => 'http://www.digicol.de/wp-content/uploads/2015/02/Semantic-ipad2-e1424180671222.png' ] ]
             ];
