@@ -96,11 +96,13 @@ class Utils
     {
         return
             [
-                '@context' =>
-                    [
-                        '@vocab' => 'http://schema.org/',
-                        'opensearch' => 'http://a9.com/-/spec/opensearch/1.1/'
-                    ],
+                '@context' => array_merge
+                    (
+                        self::getNamespaceContext(),
+                        [
+                            'opensearch' => 'http://a9.com/-/spec/opensearch/1.1/'
+                        ]
+                    ),
                 '@type' => 'SearchAction',
                 'actionStatus' => 'CompletedActionStatus',
                 'query' => '',
