@@ -35,7 +35,7 @@ class Utils
 
         if (! empty($properties[ 'description' ][ 0 ][ '@value' ]))
         {
-            $result[ $key ] = $properties[ 'description' ];
+            $result[ 'description' ] = $properties[ 'description' ];
         }
 
         // name
