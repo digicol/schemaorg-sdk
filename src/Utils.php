@@ -5,6 +5,16 @@ namespace Digicol\SchemaOrg;
 
 class Utils
 {
+    public static function getNamespaceContext()
+    {
+        return
+        [
+            '@vocab' => 'http://schema.org/',
+            'digicol' => 'http://www.digicol.com/xmlns/digicol/'
+        ];
+    }
+    
+    
     /**
      * @param string $type
      * @param array $properties

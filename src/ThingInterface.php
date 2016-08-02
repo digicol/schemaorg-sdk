@@ -32,7 +32,8 @@ interface ThingInterface
     /**
      * Get common, normalized properties
      * 
+     * @param array $properties Properties as returned by getProperties()
      * @return array
      */
-    public function getReconciledProperties();
+    public function getReconciledProperties(array $properties);
 }

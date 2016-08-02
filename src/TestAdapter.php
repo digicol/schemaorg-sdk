@@ -59,7 +59,7 @@ class TestAdapter implements AdapterInterface
         return new TestThing
         (
             [
-                'type' => 'Thing',
+                '@type' => 'Thing',
                 'sameAs' => $uri
             ]
         );

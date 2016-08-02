@@ -111,7 +111,7 @@ class TestSearchAction extends TestThing implements SearchActionInterface
                     'item' => new TestThing
                     (
                         [
-                            'type' => 'Thing',
+                            '@type' => 'Thing',
                             'sameAs' => 'http://example.com/thing/' . $i,
                             'query' => (isset($this->input_properties['query']) ? $this->input_properties['query'] : false)
                         ]

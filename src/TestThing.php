@@ -16,7 +16,7 @@ class TestThing implements ThingInterface
      */
     public function __construct(array $params)
     {
-        $this->type = $params[ 'type' ];
+        $this->type = $params[ '@type' ];
         $this->params = $params;
     }
 
@@ -65,7 +65,7 @@ class TestThing implements ThingInterface
 
         return
             [
-                '@context' => 'http://schema.org/',
+                '@context' => Utils::getNamespaceContext(),
                 '@type' => $this->getType(),
                 'name' => [ [ '@value' => $name ] ],
                 'description' => [ [ '@value' => 'This is the description of item #' . $i ] ],
@@ -84,14 +84,15 @@ class TestThing implements ThingInterface
 
     
     /**
+     * @param array $properties
      * @return array
      */
-    public function getReconciledProperties()
+    public function getReconciledProperties(array $properties)
     {
         return Utils::reconcileThingProperties
         (
             $this->getType(),
-            $this->getProperties()
+            $properties
         );
     }
 }
