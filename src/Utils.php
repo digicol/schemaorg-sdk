@@ -28,7 +28,8 @@ class Utils
                 'description' => [ [ '@value' => '' ] ],
                 'name' => [ [ '@value' => '(No name)' ] ],
                 'text' => [ [ '@value' => '' ] ],
-                'thumbnail' => false
+                'thumbnail' => false,
+                'digicol:previewImage' => false
             ];
 
         // description
@@ -83,6 +84,20 @@ class Utils
                 [
                     'contentUrl' => $properties[ 'image' ]
                 ];
+        }
+
+        // Preview image
+
+        if (! empty($properties[ 'digicol:previewImage' ][ 0 ][ '@id' ]))
+        {
+            $result[ 'digicol:previewImage' ] =
+                [
+                    'contentUrl' => $properties[ 'digicol:previewImage' ]
+                ];
+        }
+        else
+        {
+            $result[ 'digicol:previewImage' ] = $result[ 'thumbnail' ];
         }
 
         return $result;
