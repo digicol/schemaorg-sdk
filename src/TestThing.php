@@ -5,7 +5,7 @@ namespace Digicol\SchemaOrg;
 
 class TestThing implements ThingInterface
 {
-    protected $type = 'Thing';
+    protected $type = 'Photograph';
     protected $params = [ ];
 
 
@@ -56,7 +56,7 @@ class TestThing implements ThingInterface
 
         if (empty($this->params['query']))
         {
-            $name = 'Thing #' . $i;
+            $name = sprintf('%s #%s', $this->getType(), $i);
         }
         else
         {
@@ -78,7 +78,28 @@ class TestThing implements ThingInterface
                     ],
                 'dateCreated' => [ [ '@value' => date('c', (time() - ($i * 10000))), '@type' => 'DateTime' ] ],
                 'sameAs' => [ [ '@id' => $this->params[ 'sameAs' ] ] ],
-                'image' => [ [ '@id' => 'http://www.digicol.de/wp-content/uploads/2015/02/Semantic-ipad2-e1424180671222.png' ] ]
+                'associatedMedia' =>
+                    [
+                        [
+                            '@type' => 'ImageObject',
+                            'contentUrl' => 'http://www.digicol.de/wp-content/uploads/2015/02/Semantic-ipad2-e1424180671222.png',
+                            'width' => 300,
+                            'height' => 235,
+                            'contentSize' => 50181,
+                            'fileFormat' => 'image/png',
+                            'thumbnail' =>
+                                [
+                                    [
+                                        '@type' => 'ImageObject',
+                                        'contentUrl' => 'http://www.digicol.de/wp-content/uploads/2015/02/Semantic-ipad2-e1424180671222.png',
+                                        'width' => 300,
+                                        'height' => 235,
+                                        'contentSize' => 50181,
+                                        'fileFormat' => 'image/png'
+                                    ]
+                                ]
+                        ]
+                    ]
             ];
     }
 

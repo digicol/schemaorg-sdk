@@ -28,8 +28,7 @@ class Utils
                 'description' => [ [ '@value' => '' ] ],
                 'name' => [ [ '@value' => '(No name)' ] ],
                 'text' => [ [ '@value' => '' ] ],
-                'thumbnail' => false,
-                'digicol:previewImage' => false
+                'thumbnailUrl' => false
             ];
 
         // description
@@ -75,29 +74,40 @@ class Utils
             $result[ 'text' ] = $result[ 'description' ];
         }
 
-        // Thumbnail image
-        // TODO: Support thumbnail/ImageObject/contentUrl, image/thumbnail/ImageObject, image/@id
+        // Get thumbnail image URL from:
+        // - thumbnail/contentUrl
+        // - associatedMedia/*/thumbnail/contentUrl
+        // (Note that we expect thumbnail to be an array of thumbnails.)
 
-        if (! empty($properties[ 'image' ][ 0 ][ '@id' ]))
+        if (! empty($properties['thumbnail']))
         {
-            $result[ 'thumbnail' ] =
-                [
-                    'contentUrl' => $properties[ 'image' ]
-                ];
+            foreach ($properties['thumbnail'] as $thumbnail)
+            {
+                if (! empty($thumbnail['contentUrl']))
+                {
+                    $result['thumbnailUrl'] = $thumbnail['contentUrl'];
+                    break;
+                }
+            }
         }
-
-        // Preview image
-
-        if (! empty($properties[ 'digicol:previewImage' ][ 0 ][ '@id' ]))
+        elseif (isset($properties['associatedMedia']) && is_array($properties['associatedMedia']))
         {
-            $result[ 'digicol:previewImage' ] =
-                [
-                    'contentUrl' => $properties[ 'digicol:previewImage' ]
-                ];
-        }
-        else
-        {
-            $result[ 'digicol:previewImage' ] = $result[ 'thumbnail' ];
+            foreach ($properties['associatedMedia'] as $media)
+            {
+                if (! isset($media['thumbnail']))
+                {
+                    continue;
+                }
+
+                foreach ($media['thumbnail'] as $thumbnail)
+                {
+                    if (! empty($thumbnail['contentUrl']))
+                    {
+                        $result['thumbnailUrl'] = $thumbnail['contentUrl'];
+                        break;
+                    }
+                }
+            }
         }
 
         return $result;
