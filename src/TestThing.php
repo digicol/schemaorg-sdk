@@ -83,6 +83,7 @@ class TestThing implements ThingInterface
                         [
                             '@type' => 'ImageObject',
                             'contentUrl' => 'http://www.digicol.de/wp-content/uploads/2015/02/Semantic-ipad2-e1424180671222.png',
+                            'name' => 'ipad2.png',
                             'width' => 300,
                             'height' => 235,
                             'contentSize' => 50181,
