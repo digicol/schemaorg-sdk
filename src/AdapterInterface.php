@@ -11,24 +11,21 @@ interface AdapterInterface
     public function __construct(array $params);
 
 
-    /** @return array */
+    /**
+     * @return array 
+     */
     public function getParams();
 
 
-    /** @return array */
-    public function describeSearchActions();
-
-
-    /**
-     * @param array $search_params
-     * @return \Digicol\SchemaOrg\SearchActionInterface
+    /** 
+     * @return PotentialSearchActionInterface[] 
      */
-    public function newSearchAction(array $search_params);
+    public function getPotentialSearchActions();
 
 
     /**
      * @param string $uri sameAs identifying URL
-     * @return \Digicol\SchemaOrg\ThingInterface
+     * @return ThingInterface
      */
     public function newThing($uri);
 }

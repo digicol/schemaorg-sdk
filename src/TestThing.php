@@ -3,46 +3,9 @@
 namespace Digicol\SchemaOrg;
 
 
-class TestThing implements ThingInterface
+class TestThing extends AbstractThing implements ThingInterface
 {
     protected $type = 'Photograph';
-    protected $params = [ ];
-
-
-    /**
-     * ThingInterface constructor.
-     *
-     * @param array $params
-     */
-    public function __construct(array $params)
-    {
-        $this->type = $params[ '@type' ];
-        $this->params = $params;
-    }
-
-
-    /**
-     * Get identifier URI
-     *
-     * @return string
-     */
-    public function getSameAs()
-    {
-        $properties = $this->getProperties();
-        
-        return $properties[ 'sameAs' ][ '@id' ];
-    }
-
-
-    /**
-     * Get item type
-     *
-     * @return string schema.org type like "ImageObject" or "Thing"
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
 
 
     /**
@@ -102,19 +65,5 @@ class TestThing implements ThingInterface
                         ]
                     ]
             ];
-    }
-
-    
-    /**
-     * @param array $properties
-     * @return array
-     */
-    public function getReconciledProperties(array $properties)
-    {
-        return Utils::reconcileThingProperties
-        (
-            $this->getType(),
-            $properties
-        );
     }
 }

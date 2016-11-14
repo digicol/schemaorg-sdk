@@ -5,28 +5,84 @@ namespace Digicol\SchemaOrg;
 
 interface SearchActionInterface extends ThingInterface
 {
-    /** @return array */
-    public function getParams();
-
-
-    /** @return array */
-    public function describeInputProperties();
+    /**
+     * @return PotentialSearchActionInterface
+     */
+    public function getPotentialSearchAction();
 
 
     /**
-     * Set search parameters
-     *
-     * Common values that should be supported:
-     *   query (string)
-     *   opensearch:count (int; items per page)
-     *   opensearch:startPage (int; 1 for the first page)
+     * Set query string
      * 
-     * @param array $values
+     * @param string $query
      * @return int
      */
-    public function setInputProperties(array $values);
+    public function setQuery($query);
 
 
+    /**
+     * Get query string
+     * 
+     * @return string
+     */
+    public function getQuery();
+    
+    
+    /**
+     * Set first hit to return
+     * 
+     * 1-based, i.e. $index = 1 will return the first hit.
+     * 
+     * @param int $index
+     * @return int
+     */
+    public function setStartIndex($index);
+
+
+    /**
+     * Get first hit returned
+     * 
+     * @return int
+     */
+    public function getStartIndex();
+    
+    
+    /**
+     * Set number of hits to return
+     * 
+     * @param int $items
+     * @return int
+     */
+    public function setItemsPerPage($items);
+
+
+    /**
+     * Get number of hits returned
+     * 
+     * @return int
+     */
+    public function getItemsPerPage();
+    
+    
+    /**
+     * Set any search parameter
+     *
+     * @param string $key
+     * @param mixed $value
+     * @return int
+     */
+    public function setInputProperty($key, $value);
+
+
+    /**
+     * Get any search parameter
+     * 
+     * @param string $key
+     * @return mixed
+     */
+    public function getInputProperty($key);
+    
+    
     /**
      * Get search parameters
      * 
@@ -36,7 +92,7 @@ interface SearchActionInterface extends ThingInterface
 
 
     /**
-     * @return int
+     * @return ItemListInterface
      */
-    public function execute();
+    public function getResult();
 }

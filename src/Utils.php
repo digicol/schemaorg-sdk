@@ -129,16 +129,8 @@ class Utils
                         ]
                     ),
                 '@type' => 'SearchAction',
-                'actionStatus' => 'CompletedActionStatus',
-                'query' => '',
-                'result' =>
-                    [
-                        '@type' => 'ItemList',
-                        'numberOfItems' => 0,
-                        'opensearch:startIndex' => 1,
-                        'opensearch:itemsPerPage' => 1,
-                        'itemListElement' => [ ]
-                    ]
+                'actionStatus' => 'PotentialActionStatus',
+                'query' => ''
             ];
     }
     

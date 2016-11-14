@@ -24,31 +24,24 @@ class TestAdapter implements AdapterInterface
     }
 
 
-    /** @return array */
-    public function describeSearchActions()
+    /**
+     * @return PotentialSearchActionInterface[]
+     */
+    public function getPotentialSearchActions()
     {
-        $result =
+        $result = [ ];
+        
+        $result[ 'test' ] = new TestPotentialSearchAction
+        (
             [
-                'test' =>
-                    [
-                        'name' => 'Test',
-                        'description' => 'Static test data'
-                    ]
-            ];
-
+                'name' => 'Test',
+                'description' => 'Static test data'
+            ]
+        );
+        
         return $result;
     }
-
-
-    /**
-     * @param array $search_params
-     * @return \Digicol\SchemaOrg\SearchActionInterface
-     */
-    public function newSearchAction(array $search_params)
-    {
-        return new TestSearchAction($search_params);
-    }
-
+    
 
     /**
      * @param string $uri sameAs identifying URL
