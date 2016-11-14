@@ -10,7 +10,7 @@ class TestSearchAction extends AbstractSearchAction implements SearchActionInter
      */
     public function getResult()
     {
-        $result = new TestItemList($this, [ 'query' => $this->getQuery() ]);
+        $result = new TestItemList($this->getAdapter(), $this, [ 'query' => $this->getQuery() ]);
         $result->execute();
         
         return $result;

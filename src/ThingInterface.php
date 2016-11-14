@@ -6,6 +6,12 @@ namespace Digicol\SchemaOrg;
 interface ThingInterface
 {
     /**
+     * @return AdapterInterface
+     */
+    public function getAdapter();
+    
+    
+    /**
      * @return array
      */
     public function getParams();

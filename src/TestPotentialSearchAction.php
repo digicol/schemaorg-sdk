@@ -10,6 +10,6 @@ class TestPotentialSearchAction extends AbstractPotentialSearchAction  implement
      */
     public function newSearchAction()
     {
-        return new TestSearchAction($this);
+        return new TestSearchAction($this->getAdapter(), $this);
     }
 }

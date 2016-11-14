@@ -24,6 +24,7 @@ class TestItemList extends AbstractItemList implements ItemListInterface
 
             $this->items[ ] = new TestThing
             (
+                $this->getAdapter(),
                 [
                     '@type' => 'Photograph',
                     'sameAs' => 'http://example.com/thing/' . $i,

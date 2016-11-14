@@ -23,9 +23,9 @@ abstract class AbstractItemList extends TestThing implements ItemListInterface
     /**
      * @param array $params
      */
-    public function __construct(SearchActionInterface $search_action, array $params = [ ])
+    public function __construct(AdapterInterface $adapter, SearchActionInterface $search_action, array $params = [ ])
     {
-        parent::__construct($params);
+        parent::__construct($adapter, $params);
         $this->search_action = $search_action;
     }
 

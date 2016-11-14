@@ -5,23 +5,40 @@ namespace Digicol\SchemaOrg;
 
 abstract class AbstractThing implements ThingInterface
 {
+    /** @var AdapterInterface */
+    protected $adapter;
+
+    /** @var string */
     protected $type;
+    
+    /** @var array */
     protected $params = [ ];
 
 
     /**
      * ThingInterface constructor.
      *
+     * @param AdapterInterface $adapter
      * @param array $params
      */
-    public function __construct(array $params)
+    public function __construct(AdapterInterface $adapter, array $params)
     {
+        $this->adapter = $adapter;
         $this->params = $params;
 
         if (isset($params[ '@type' ]))
         {
             $this->type = $params[ '@type' ];
         }
+    }
+
+
+    /**
+     * @return AdapterInterface
+     */
+    public function getAdapter()
+    {
+        return $this->adapter;
     }
 
 

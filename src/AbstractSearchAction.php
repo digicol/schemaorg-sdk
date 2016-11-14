@@ -21,7 +21,7 @@ abstract class AbstractSearchAction extends AbstractThing implements SearchActio
      * @param PotentialSearchActionInterface $potential_search_action
      * @param array $params
      */
-    public function __construct(PotentialSearchActionInterface $potential_search_action, array $params = [ ])
+    public function __construct(AdapterInterface $adapter, PotentialSearchActionInterface $potential_search_action, array $params = [ ])
     {
         $this->potential_search_action = $potential_search_action;
         
@@ -30,7 +30,7 @@ abstract class AbstractSearchAction extends AbstractThing implements SearchActio
             $params[ '@type' ] = 'SearchAction';
         }
         
-        parent::__construct($params);
+        parent::__construct($adapter, $params);
     }
 
 

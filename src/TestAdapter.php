@@ -33,6 +33,7 @@ class TestAdapter implements AdapterInterface
         
         $result[ 'test' ] = new TestPotentialSearchAction
         (
+            $this,
             [
                 'name' => 'Test',
                 'description' => 'Static test data'
@@ -51,6 +52,7 @@ class TestAdapter implements AdapterInterface
     {
         return new TestThing
         (
+            $this,
             [
                 '@type' => 'Photograph',
                 'sameAs' => $uri

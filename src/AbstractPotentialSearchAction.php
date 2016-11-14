@@ -8,9 +8,9 @@ abstract class AbstractPotentialSearchAction extends AbstractThing implements Po
     /**
      * @param array $params
      */
-    public function __construct(array $params)
+    public function __construct(AdapterInterface $adapter, array $params)
     {
-        parent::__construct($params);
+        parent::__construct($adapter, $params);
         $this->type = 'SearchAction';
     }
 
