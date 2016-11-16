@@ -1,15 +1,19 @@
 <?php
 
-namespace Digicol\SchemaOrg;
+namespace Digicol\SchemaOrg\Sdk\Example;
+
+use Digicol\SchemaOrg\Sdk\AbstractPotentialSearchAction;
+use Digicol\SchemaOrg\Sdk\PotentialSearchActionInterface;
+use Digicol\SchemaOrg\Sdk\SearchActionInterface;
 
 
-class TestPotentialSearchAction extends AbstractPotentialSearchAction  implements PotentialSearchActionInterface
+class ExamplePotentialSearchAction extends AbstractPotentialSearchAction implements PotentialSearchActionInterface
 {
     /**
      * @return SearchActionInterface
      */
     public function newSearchAction()
     {
-        return new TestSearchAction($this->getAdapter(), $this);
+        return new ExampleSearchAction($this->getAdapter(), $this);
     }
 }

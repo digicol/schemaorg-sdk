@@ -1,6 +1,6 @@
 <?php
 
-namespace Digicol\SchemaOrg;
+namespace Digicol\SchemaOrg\Sdk;
 
 
 abstract class AbstractSearchAction extends AbstractThing implements SearchActionInterface

@@ -1,16 +1,20 @@
 <?php
 
-namespace Digicol\SchemaOrg;
+namespace Digicol\SchemaOrg\Sdk\Example;
+
+use Digicol\SchemaOrg\Sdk\AbstractSearchAction;
+use Digicol\SchemaOrg\Sdk\ItemListInterface;
+use Digicol\SchemaOrg\Sdk\SearchActionInterface;
 
 
-class TestSearchAction extends AbstractSearchAction implements SearchActionInterface
+class ExampleSearchAction extends AbstractSearchAction implements SearchActionInterface 
 {
     /**
      * @return ItemListInterface
      */
     public function getResult()
     {
-        $result = new TestItemList($this->getAdapter(), $this, [ 'query' => $this->getQuery() ]);
+        $result = new ExampleItemList($this->getAdapter(), $this, [ 'query' => $this->getQuery() ]);
         $result->execute();
         
         return $result;

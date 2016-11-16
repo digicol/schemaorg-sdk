@@ -1,6 +1,6 @@
 <?php
 
-namespace Digicol\SchemaOrg;
+namespace Digicol\SchemaOrg\Sdk;
 
 
 class Utils
@@ -21,7 +21,7 @@ class Utils
      * @param array $params
      * @return array
      */
-    public static function reconcileThingProperties($type, array $properties, array $params = [ ])
+    public static function reconcileThingProperties($type, array $properties)
     {
         $result =
             [

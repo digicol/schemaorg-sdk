@@ -1,9 +1,9 @@
 <?php
 
-namespace Digicol\SchemaOrg;
+namespace Digicol\SchemaOrg\Sdk;
 
 
-abstract class AbstractItemList extends TestThing implements ItemListInterface
+abstract class AbstractItemList extends AbstractThing implements ItemListInterface
 {
     /** @var SearchActionInterface */
     protected $search_action;

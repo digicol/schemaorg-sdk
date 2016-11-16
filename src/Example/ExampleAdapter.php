@@ -1,9 +1,13 @@
 <?php
 
-namespace Digicol\SchemaOrg;
+namespace Digicol\SchemaOrg\Sdk\Example;
+
+use Digicol\SchemaOrg\Sdk\AdapterInterface;
+use Digicol\SchemaOrg\Sdk\PotentialSearchActionInterface;
+use Digicol\SchemaOrg\Sdk\ThingInterface;
 
 
-class TestAdapter implements AdapterInterface
+class ExampleAdapter implements AdapterInterface
 {
     protected $params;
 
@@ -31,7 +35,7 @@ class TestAdapter implements AdapterInterface
     {
         $result = [ ];
         
-        $result[ 'test' ] = new TestPotentialSearchAction
+        $result[ 'test' ] = new ExamplePotentialSearchAction
         (
             $this,
             [
@@ -46,11 +50,11 @@ class TestAdapter implements AdapterInterface
 
     /**
      * @param string $uri sameAs identifying URL
-     * @return \Digicol\SchemaOrg\ThingInterface
+     * @return ThingInterface
      */
     public function newThing($uri)
     {
-        return new TestThing
+        return new ExampleThing
         (
             $this,
             [

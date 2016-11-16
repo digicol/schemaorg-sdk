@@ -1,9 +1,12 @@
 <?php
 
-namespace Digicol\SchemaOrg;
+namespace Digicol\SchemaOrg\Sdk\Example;
+
+use Digicol\SchemaOrg\Sdk\AbstractItemList;
+use Digicol\SchemaOrg\Sdk\ItemListInterface;
 
 
-class TestItemList extends AbstractItemList implements ItemListInterface
+class ExampleItemList extends AbstractItemList implements ItemListInterface 
 {
     const TOTAL_RESULTS = 57;
 
@@ -22,7 +25,7 @@ class TestItemList extends AbstractItemList implements ItemListInterface
         {
             $cnt++;
 
-            $this->items[ ] = new TestThing
+            $this->items[ ] = new ExampleThing
             (
                 $this->getAdapter(),
                 [

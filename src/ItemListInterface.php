@@ -1,6 +1,6 @@
 <?php
 
-namespace Digicol\SchemaOrg;
+namespace Digicol\SchemaOrg\Sdk;
 
 
 interface ItemListInterface extends \Iterator, \ArrayAccess, ThingInterface

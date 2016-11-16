@@ -1,9 +1,13 @@
 <?php
 
-namespace Digicol\SchemaOrg;
+namespace Digicol\SchemaOrg\Sdk\Example;
+
+use Digicol\SchemaOrg\Sdk\AbstractThing;
+use Digicol\SchemaOrg\Sdk\ThingInterface;
+use Digicol\SchemaOrg\Sdk\Utils;
 
 
-class TestThing extends AbstractThing implements ThingInterface
+class ExampleThing extends AbstractThing implements ThingInterface
 {
     protected $type = 'Photograph';
 
