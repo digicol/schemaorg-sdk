@@ -6,6 +6,7 @@ namespace Digicol\SchemaOrg;
 abstract class AbstractPotentialSearchAction extends AbstractThing implements PotentialSearchActionInterface
 {
     /**
+     * @param AdapterInterface $adapter
      * @param array $params
      */
     public function __construct(AdapterInterface $adapter, array $params)

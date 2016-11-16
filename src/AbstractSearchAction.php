@@ -18,6 +18,7 @@ abstract class AbstractSearchAction extends AbstractThing implements SearchActio
 
 
     /**
+     * @param AdapterInterface $adapter
      * @param PotentialSearchActionInterface $potential_search_action
      * @param array $params
      */
