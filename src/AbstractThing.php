@@ -52,6 +52,25 @@ abstract class AbstractThing implements ThingInterface
 
 
     /**
+     * Get a single parameter value
+     *
+     * @param string $key
+     * @return mixed
+     */
+    public function getParam($key)
+    {
+        $params = $this->getParams();
+        
+        if (! isset($params[$key]))
+        {
+            return false;
+        }
+        
+        return $params[$key];
+    }
+
+
+    /**
      * Get identifier URI
      *
      * @return string
