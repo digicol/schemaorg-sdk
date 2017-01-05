@@ -6,10 +6,10 @@ namespace Digicol\SchemaOrg\Sdk;
 abstract class AbstractSearchAction extends AbstractThing implements SearchActionInterface
 {
     /** @var PotentialSearchActionInterface */
-    protected $potential_search_action;
-    
+    protected $potentialSearchAction;
+
     /** @var array */
-    protected $input_properties = 
+    protected $inputProperties =
         [
             'query' => '',
             'opensearch:itemsPerPage' => 20,
@@ -19,18 +19,20 @@ abstract class AbstractSearchAction extends AbstractThing implements SearchActio
 
     /**
      * @param AdapterInterface $adapter
-     * @param PotentialSearchActionInterface $potential_search_action
+     * @param PotentialSearchActionInterface $potentialSearchAction
      * @param array $params
      */
-    public function __construct(AdapterInterface $adapter, PotentialSearchActionInterface $potential_search_action, array $params = [ ])
-    {
-        $this->potential_search_action = $potential_search_action;
-        
-        if (empty($params[ '@type' ]))
-        {
-            $params[ '@type' ] = 'SearchAction';
+    public function __construct(
+        AdapterInterface $adapter,
+        PotentialSearchActionInterface $potentialSearchAction,
+        array $params = []
+    ) {
+        $this->potentialSearchAction = $potentialSearchAction;
+
+        if (empty($params['@type'])) {
+            $params['@type'] = 'SearchAction';
         }
-        
+
         parent::__construct($adapter, $params);
     }
 
@@ -40,7 +42,7 @@ abstract class AbstractSearchAction extends AbstractThing implements SearchActio
      */
     public function getPotentialSearchAction()
     {
-        return $this->potential_search_action;
+        return $this->potentialSearchAction;
     }
 
 
@@ -52,8 +54,8 @@ abstract class AbstractSearchAction extends AbstractThing implements SearchActio
      */
     public function setQuery($query)
     {
-        $this->input_properties[ 'query' ] = $query;
-        
+        $this->inputProperties['query'] = $query;
+
         return 1;
     }
 
@@ -65,7 +67,7 @@ abstract class AbstractSearchAction extends AbstractThing implements SearchActio
      */
     public function getQuery()
     {
-        return $this->input_properties[ 'query' ];
+        return $this->inputProperties['query'];
     }
 
 
@@ -79,7 +81,7 @@ abstract class AbstractSearchAction extends AbstractThing implements SearchActio
      */
     public function setStartIndex($index)
     {
-        $this->input_properties[ 'opensearch:startIndex' ] = max(1, intval($index));
+        $this->inputProperties['opensearch:startIndex'] = max(1, intval($index));
 
         return 1;
     }
@@ -92,7 +94,7 @@ abstract class AbstractSearchAction extends AbstractThing implements SearchActio
      */
     public function getStartIndex()
     {
-        return $this->input_properties[ 'opensearch:startIndex' ];
+        return $this->inputProperties['opensearch:startIndex'];
     }
 
 
@@ -104,7 +106,7 @@ abstract class AbstractSearchAction extends AbstractThing implements SearchActio
      */
     public function setItemsPerPage($items)
     {
-        $this->input_properties[ 'opensearch:itemsPerPage' ] = max(1, intval($items));
+        $this->inputProperties['opensearch:itemsPerPage'] = max(1, intval($items));
 
         return 1;
     }
@@ -117,7 +119,7 @@ abstract class AbstractSearchAction extends AbstractThing implements SearchActio
      */
     public function getItemsPerPage()
     {
-        return $this->input_properties[ 'opensearch:itemsPerPage' ];
+        return $this->inputProperties['opensearch:itemsPerPage'];
     }
 
 
@@ -130,8 +132,8 @@ abstract class AbstractSearchAction extends AbstractThing implements SearchActio
      */
     public function setInputProperty($key, $value)
     {
-        $this->input_properties[ $key ] = $value;
-        
+        $this->inputProperties[$key] = $value;
+
         return 1;
     }
 
@@ -144,15 +146,14 @@ abstract class AbstractSearchAction extends AbstractThing implements SearchActio
      */
     public function getInputProperty($key)
     {
-        if (! isset($this->input_properties[ $key ]))
-        {
+        if (! isset($this->inputProperties[$key])) {
             return false;
         }
-        
-        return $this->input_properties[ $key ];
+
+        return $this->inputProperties[$key];
     }
 
-    
+
     /**
      * Get search parameters
      *
@@ -160,17 +161,17 @@ abstract class AbstractSearchAction extends AbstractThing implements SearchActio
      */
     public function getInputProperties()
     {
-        return $this->input_properties;
+        return $this->inputProperties;
     }
 
 
     public function getProperties()
     {
         $result = Utils::getSearchActionSkeleton();
-        
-        $result[ 'actionStatus' ] = 'ActiveActionStatus';
-        $result[ 'query' ] = $this->getQuery();
-        
+
+        $result['actionStatus'] = 'ActiveActionStatus';
+        $result['query'] = $this->getQuery();
+
         return $result;
     }
 

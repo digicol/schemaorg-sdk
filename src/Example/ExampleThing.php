@@ -19,14 +19,11 @@ class ExampleThing extends AbstractThing implements ThingInterface
      */
     public function getProperties()
     {
-        $i = basename(parse_url($this->params[ 'sameAs' ], PHP_URL_PATH));
+        $i = basename(parse_url($this->params['sameAs'], PHP_URL_PATH));
 
-        if (empty($this->params['query']))
-        {
+        if (empty($this->params['query'])) {
             $name = sprintf('%s #%s', $this->getType(), $i);
-        }
-        else
-        {
+        } else {
             $name = $this->params['query'] . ' #' . $i;
         }
 
@@ -34,17 +31,17 @@ class ExampleThing extends AbstractThing implements ThingInterface
             [
                 '@context' => Utils::getNamespaceContext(),
                 '@type' => $this->getType(),
-                'name' => [ [ '@value' => $name ] ],
-                'description' => [ [ '@value' => 'This is the description of item #' . $i ] ],
-                'text' => 
-                    [ 
+                'name' => [['@value' => $name]],
+                'description' => [['@value' => 'This is the description of item #' . $i]],
+                'text' =>
+                    [
                         [
-                            '@value' => sprintf('<p>This is the text of <b>item #%s</b>, in XHTML format.', $i), 
+                            '@value' => sprintf('<p>This is the text of <b>item #%s</b>, in XHTML format.', $i),
                             '@type' => 'http://www.w3.org/1999/xhtml'
-                        ] 
+                        ]
                     ],
-                'dateCreated' => [ [ '@value' => date('c', (time() - ($i * 10000))), '@type' => 'DateTime' ] ],
-                'sameAs' => [ [ '@id' => $this->params[ 'sameAs' ] ] ],
+                'dateCreated' => [['@value' => date('c', (time() - ($i * 10000))), '@type' => 'DateTime']],
+                'sameAs' => [['@id' => $this->params['sameAs']]],
                 'associatedMedia' =>
                     [
                         [

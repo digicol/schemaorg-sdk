@@ -22,12 +22,12 @@ abstract class AbstractPotentialSearchAction extends AbstractThing implements Po
     abstract public function newSearchAction();
 
 
-    /** 
-     * @return array 
+    /**
+     * @return array
      */
     public function describeInputProperties()
     {
-        return [ ];
+        return [];
     }
 
 
@@ -39,10 +39,10 @@ abstract class AbstractPotentialSearchAction extends AbstractThing implements Po
     public function getProperties()
     {
         $result = Utils::getSearchActionSkeleton();
-        
-        $result[ 'name' ] = $this->params[ 'name' ];
-        $result[ 'description' ] = $this->params[ 'description' ];
-        
+
+        $result['name'] = $this->params['name'];
+        $result['description'] = $this->params['description'];
+
         return $result;
     }
 
@@ -50,13 +50,13 @@ abstract class AbstractPotentialSearchAction extends AbstractThing implements Po
     /** @return string */
     public function getName()
     {
-        return $this->params[ 'name' ];
+        return $this->params['name'];
     }
 
 
     /** @return string */
     public function getDescription()
     {
-        return $this->params[ 'description' ];
+        return $this->params['description'];
     }
 }

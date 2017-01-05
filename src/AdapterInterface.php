@@ -12,13 +12,13 @@ interface AdapterInterface
 
 
     /**
-     * @return array 
+     * @return array
      */
     public function getParams();
 
 
-    /** 
-     * @return PotentialSearchActionInterface[] 
+    /**
+     * @return PotentialSearchActionInterface[]
      */
     public function getPotentialSearchActions();
 

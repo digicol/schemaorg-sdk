@@ -13,23 +13,23 @@ interface ItemListInterface extends \Iterator, \ArrayAccess, ThingInterface
 
     /**
      * Get total number of hits
-     * 
+     *
      * @return int
      */
     public function getNumberOfItems();
-    
-    
+
+
     /**
      * Get first hit returned
-     * 
+     *
      * @return int
      */
     public function getStartIndex();
-    
-    
+
+
     /**
      * Get number of hits returned
-     * 
+     *
      * @return int
      */
     public function getItemsPerPage();
@@ -37,16 +37,16 @@ interface ItemListInterface extends \Iterator, \ArrayAccess, ThingInterface
 
     /**
      * Get any search result parameter
-     * 
+     *
      * @param string $key
      * @return mixed
      */
     public function getOutputProperty($key);
-    
-    
+
+
     /**
      * Get all search result parameters
-     * 
+     *
      * @return array
      */
     public function getOutputProperties();

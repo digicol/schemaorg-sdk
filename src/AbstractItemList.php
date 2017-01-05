@@ -6,29 +6,29 @@ namespace Digicol\SchemaOrg\Sdk;
 abstract class AbstractItemList extends AbstractThing implements ItemListInterface
 {
     /** @var SearchActionInterface */
-    protected $search_action;
+    protected $searchAction;
 
     /** @var array */
-    protected $output_properties =
+    protected $outputProperties =
         [
             'numberOfItems' => 0,
             'opensearch:itemsPerPage' => 20,
             'opensearch:startIndex' => 1
         ];
-    
+
     /** @var ThingInterface[] */
-    protected $items = [ ];
+    protected $items = [];
 
 
     /**
      * @param AdapterInterface $adapter
-     * @param SearchActionInterface $search_action
+     * @param SearchActionInterface $searchAction
      * @param array $params
      */
-    public function __construct(AdapterInterface $adapter, SearchActionInterface $search_action, array $params = [ ])
+    public function __construct(AdapterInterface $adapter, SearchActionInterface $searchAction, array $params = [])
     {
         parent::__construct($adapter, $params);
-        $this->search_action = $search_action;
+        $this->searchAction = $searchAction;
     }
 
 
@@ -37,7 +37,7 @@ abstract class AbstractItemList extends AbstractThing implements ItemListInterfa
      */
     public function getSearchAction()
     {
-        return $this->search_action;
+        return $this->searchAction;
     }
 
 
@@ -48,7 +48,7 @@ abstract class AbstractItemList extends AbstractThing implements ItemListInterfa
      */
     public function getStartIndex()
     {
-        return $this->output_properties[ 'opensearch:startIndex' ];
+        return $this->outputProperties['opensearch:startIndex'];
     }
 
 
@@ -59,9 +59,9 @@ abstract class AbstractItemList extends AbstractThing implements ItemListInterfa
      */
     public function getItemsPerPage()
     {
-        return $this->output_properties[ 'opensearch:itemsPerPage' ];
+        return $this->outputProperties['opensearch:itemsPerPage'];
     }
-    
+
 
     /**
      * Get total number of hits
@@ -70,7 +70,7 @@ abstract class AbstractItemList extends AbstractThing implements ItemListInterfa
      */
     public function getNumberOfItems()
     {
-        return $this->output_properties[ 'numberOfItems' ];
+        return $this->outputProperties['numberOfItems'];
     }
 
 
@@ -82,12 +82,11 @@ abstract class AbstractItemList extends AbstractThing implements ItemListInterfa
      */
     public function getOutputProperty($key)
     {
-        if (! isset($this->output_properties[ $key ]))
-        {
+        if (! isset($this->outputProperties[$key])) {
             return false;
         }
 
-        return $this->output_properties[ $key ];
+        return $this->outputProperties[$key];
     }
 
 
@@ -98,7 +97,7 @@ abstract class AbstractItemList extends AbstractThing implements ItemListInterfa
      */
     public function getOutputProperties()
     {
-        return $this->output_properties;
+        return $this->outputProperties;
     }
 
 
@@ -110,7 +109,7 @@ abstract class AbstractItemList extends AbstractThing implements ItemListInterfa
         return $this->items;
     }
 
-    
+
     /**
      * Get all property values
      *
@@ -118,22 +117,21 @@ abstract class AbstractItemList extends AbstractThing implements ItemListInterfa
      */
     public function getProperties()
     {
-        $result = 
+        $result =
             [
                 '@type' => 'ItemList',
                 'numberOfItems' => $this->getNumberOfItems(),
                 'opensearch:itemsPerPage' => $this->getItemsPerPage(),
                 'opensearch:startIndex' => $this->getStartIndex(),
-                'itemListElement' => [ ]
+                'itemListElement' => []
             ];
 
         $i = 0;
-        
-        foreach ($this->items as $thing)
-        {
+
+        foreach ($this->items as $thing) {
             $i++;
 
-            $result[ 'itemListElement' ][ ] = 
+            $result['itemListElement'][] =
                 [
                     '@type' => 'ListItem',
                     'position' => $i,
@@ -166,7 +164,7 @@ abstract class AbstractItemList extends AbstractThing implements ItemListInterfa
      */
     public function offsetExists($key)
     {
-        return isset($this->items[ $key ]);
+        return isset($this->items[$key]);
     }
 
 
@@ -190,12 +188,11 @@ abstract class AbstractItemList extends AbstractThing implements ItemListInterfa
      */
     public function offsetGet($key)
     {
-        if (! $this->offsetExists($key))
-        {
+        if (! $this->offsetExists($key)) {
             return null;
         }
 
-        return $this->items[ $key ];
+        return $this->items[$key];
     }
 
 

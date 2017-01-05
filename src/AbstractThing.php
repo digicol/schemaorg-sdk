@@ -10,9 +10,9 @@ abstract class AbstractThing implements ThingInterface
 
     /** @var string */
     protected $type;
-    
+
     /** @var array */
-    protected $params = [ ];
+    protected $params = [];
 
 
     /**
@@ -26,9 +26,8 @@ abstract class AbstractThing implements ThingInterface
         $this->adapter = $adapter;
         $this->params = $params;
 
-        if (isset($params[ '@type' ]))
-        {
-            $this->type = $params[ '@type' ];
+        if (isset($params['@type'])) {
+            $this->type = $params['@type'];
         }
     }
 
@@ -60,12 +59,11 @@ abstract class AbstractThing implements ThingInterface
     public function getParam($key)
     {
         $params = $this->getParams();
-        
-        if (! isset($params[$key]))
-        {
+
+        if (! isset($params[$key])) {
             return false;
         }
-        
+
         return $params[$key];
     }
 
@@ -78,13 +76,12 @@ abstract class AbstractThing implements ThingInterface
     public function getSameAs()
     {
         $properties = $this->getProperties();
-        
-        if (! isset($properties[ 'sameAs' ][ '@id' ]))
-        {
+
+        if (! isset($properties['sameAs']['@id'])) {
             return '';
         }
-        
-        return $properties[ 'sameAs' ][ '@id' ];
+
+        return $properties['sameAs']['@id'];
     }
 
 

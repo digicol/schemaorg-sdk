@@ -33,9 +33,9 @@ class ExampleAdapter implements AdapterInterface
      */
     public function getPotentialSearchActions()
     {
-        $result = [ ];
-        
-        $result[ 'test' ] = new ExamplePotentialSearchAction
+        $result = [];
+
+        $result['test'] = new ExamplePotentialSearchAction
         (
             $this,
             [
@@ -43,10 +43,10 @@ class ExampleAdapter implements AdapterInterface
                 'description' => 'Static test data'
             ]
         );
-        
+
         return $result;
     }
-    
+
 
     /**
      * @param string $uri sameAs identifying URL

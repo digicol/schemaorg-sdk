@@ -13,7 +13,7 @@ interface SearchActionInterface extends ThingInterface
 
     /**
      * Set query string
-     * 
+     *
      * @param string $query
      * @return int
      */
@@ -22,17 +22,17 @@ interface SearchActionInterface extends ThingInterface
 
     /**
      * Get query string
-     * 
+     *
      * @return string
      */
     public function getQuery();
-    
-    
+
+
     /**
      * Set first hit to return
-     * 
+     *
      * 1-based, i.e. $index = 1 will return the first hit.
-     * 
+     *
      * @param int $index
      * @return int
      */
@@ -41,15 +41,15 @@ interface SearchActionInterface extends ThingInterface
 
     /**
      * Get first hit returned
-     * 
+     *
      * @return int
      */
     public function getStartIndex();
-    
-    
+
+
     /**
      * Set number of hits to return
-     * 
+     *
      * @param int $items
      * @return int
      */
@@ -58,12 +58,12 @@ interface SearchActionInterface extends ThingInterface
 
     /**
      * Get number of hits returned
-     * 
+     *
      * @return int
      */
     public function getItemsPerPage();
-    
-    
+
+
     /**
      * Set any search parameter
      *
@@ -76,16 +76,16 @@ interface SearchActionInterface extends ThingInterface
 
     /**
      * Get any search parameter
-     * 
+     *
      * @param string $key
      * @return mixed
      */
     public function getInputProperty($key);
-    
-    
+
+
     /**
      * Get search parameters
-     * 
+     *
      * @return array
      */
     public function getInputProperties();
