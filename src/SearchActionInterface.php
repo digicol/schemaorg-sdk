@@ -95,4 +95,11 @@ interface SearchActionInterface extends ThingInterface
      * @return ItemListInterface
      */
     public function getResult();
+
+
+    /**
+     * @param StreamHandlerInterface $streamHandler
+     * @return int
+     */
+    public function streamResult(StreamHandlerInterface $streamHandler);
 }

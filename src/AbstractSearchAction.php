@@ -180,4 +180,35 @@ abstract class AbstractSearchAction extends AbstractThing implements SearchActio
      * @return ItemListInterface
      */
     abstract public function getResult();
+
+
+    /**
+     * @param StreamHandlerInterface $streamHandler
+     * @return int
+     */
+    public function streamResult(StreamHandlerInterface $streamHandler)
+    {
+        // Override this method for real streaming! This is just a stupid
+        // default implementation feeding the whole result at once to the callback.
+        
+        $itemList = $this->getResult();
+        
+        $ok = $streamHandler->onListMetadata($itemList);
+        
+        if ($ok >= 0) {
+            foreach ($itemList->getItems() as $item) {
+                $ok = $streamHandler->onListItem($item);
+                
+                if ($ok < 0) {
+                    break;
+                }
+            }
+        }
+        
+        if ($ok >= 0) {
+            $streamHandler->onComplete();
+        }
+        
+        return $ok;
+    }
 }
